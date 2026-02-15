@@ -1,0 +1,9 @@
+{
+    "name": "pizza-delivery-app-root",
+    "version": "1.0.0",
+    "scripts": {
+        "start-server": "npm --prefix server start",
+        "start-client": "npm --prefix client run dev",
+        "install-all": "npm --prefix server install && npm --prefix client install"
+    }
+}
