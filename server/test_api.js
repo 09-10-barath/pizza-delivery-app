@@ -1,10 +1,11 @@
-const axios = require('axios');
+import axios from "axios";
 
-axios.get('http://localhost:5000/api/inventory')
-    .then(response => {
-        console.log('API Response (first 3 items):');
-        console.log(JSON.stringify(response.data.slice(0, 3), null, 2));
-    })
-    .catch(error => {
-        console.error('Error fetching inventory:', error.message);
-    });
+const API_URL = process.env.REACT_APP_API_URL;
+
+axios.get(`${API_URL}/api/inventory`)
+  .then(response => {
+    console.log("API Response:", response.data);
+  })
+  .catch(error => {
+    console.error("Error fetching inventory:", error.message);
+  });
