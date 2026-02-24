@@ -4,7 +4,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import { AuthContext } from '../context/AuthContext';
 
-const socket = io('${import.meta.env.VITE_API_URL}');
+const socket = io(`${import.meta.env.VITE_API_URL}`);
 
 const OrderTracking = () => {
     const { id } = useParams();

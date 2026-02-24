@@ -13,7 +13,7 @@ const Login = () => {
         e.preventDefault();
         try {
             // Replace with your actual backend URL
-            const res = await axios.post('${import.meta.env.VITE_API_URL}/api/user/login', { email, password });
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/login`, { email, password });
             login(res.data);
             alert('Login Successful');
             navigate(res.data.role === 'admin' ? '/admin' : '/dashboard');
