@@ -23,7 +23,7 @@ const PizzaBuilder = () => {
     useEffect(() => {
         const fetchInventory = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/inventory');
+                const res = await axios.get('${import.meta.env.VITE_API_URL}/api/inventory');
                 setInventory(res.data);
             } catch (err) {
                 console.error("Failed to fetch inventory", err);
@@ -71,7 +71,7 @@ const PizzaBuilder = () => {
         };
 
         try {
-            const { data: { id: order_id, currency } } = await axios.post('http://localhost:5000/api/payment/create-order', {
+            const { data: { id: order_id, currency } } = await axios.post('${import.meta.env.VITE_API_URL}/api/payment/create-order', {
                 amount: calculateTotal()
             });
 
@@ -84,13 +84,13 @@ const PizzaBuilder = () => {
                 order_id: order_id,
                 handler: async function (response) {
                     try {
-                        await axios.post('http://localhost:5000/api/payment/verify', {
+                        await axios.post('${import.meta.env.VITE_API_URL}/api/payment/verify', {
                             razorpay_order_id: response.razorpay_order_id,
                             razorpay_payment_id: response.razorpay_payment_id,
                             razorpay_signature: response.razorpay_signature
                         });
 
-                        const res = await axios.post('http://localhost:5000/api/orders', {
+                        const res = await axios.post('${import.meta.env.VITE_API_URL}/api/orders', {
                             ...orderData,
                             paymentId: response.razorpay_payment_id
                         }, {

@@ -4,7 +4,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import { AuthContext } from '../context/AuthContext';
 
-const socket = io('http://localhost:5000');
+const socket = io('${import.meta.env.VITE_API_URL}');
 
 const OrderTracking = () => {
     const { id } = useParams();
@@ -14,7 +14,7 @@ const OrderTracking = () => {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/orders/${id}`, {
+                const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/orders/${id}`, {
                     headers: { 'auth-token': user.token }
                 }); // Need to implement get single order route
                 setOrder(res.data);

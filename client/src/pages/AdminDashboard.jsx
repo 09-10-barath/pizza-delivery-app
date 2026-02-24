@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/orders/all', {
+            const res = await axios.get('${import.meta.env.VITE_API_URL}/api/orders/all', {
                 headers: { 'auth-token': user.token }
             });
             setOrders(res.data);
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
     const fetchInventory = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/inventory');
+            const res = await axios.get('${import.meta.env.VITE_API_URL}/api/inventory');
             setInventory(res.data);
         } catch (err) {
             console.error(err);
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
 
     const updateStatus = async (orderId, status) => {
         try {
-            await axios.patch(`http://localhost:5000/api/orders/${orderId}/status`,
+            await axios.patch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/status`,
                 { status },
                 { headers: { 'auth-token': user.token } }
             );
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
 
     const updateStock = async (pizzaId, newStock) => {
         try {
-            await axios.post(`http://localhost:5000/api/inventory/update-stock/${pizzaId}`,
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/inventory/update-stock/${pizzaId}`,
                 { stock: newStock },
                 { headers: { 'auth-token': user.token } }
             );
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
 
     const updateImage = async (pizzaId, newImage) => {
         try {
-            await axios.patch(`http://localhost:5000/api/inventory/update-image/${pizzaId}`,
+            await axios.patch(`${import.meta.env.VITE_API_URL}/api/inventory/update-image/${pizzaId}`,
                 { image: newImage },
                 { headers: { 'auth-token': user.token } }
             );
