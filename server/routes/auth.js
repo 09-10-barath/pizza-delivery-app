@@ -37,7 +37,7 @@ router.post('/register', async (req, res) => {
         res.send({ user: user._id });
     } catch (err) {
         console.error("Error in registration route:", err);
-        res.status(400).send(err);
+        res.status(400).send(err.message || 'Registration failed');
     }
 });
 
