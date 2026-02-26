@@ -11,8 +11,8 @@ mongoose.connect(process.env.MONGO_URI, {
     .catch(err => console.log(err));
 
 const seedAdmin = async () => {
-    const email = "admin@pizza.com";
-    const password = "admin";
+    const email = process.env.ADMIN_EMAIL;
+    const password = process.env.ADMIN_PASSWORD;
 
     const userExist = await User.findOne({ email });
     if (userExist) {

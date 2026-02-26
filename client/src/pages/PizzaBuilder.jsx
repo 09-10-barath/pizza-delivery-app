@@ -76,7 +76,7 @@ const PizzaBuilder = () => {
             });
 
             const options = {
-                key: "rzp_test_SEWOmJZrwp4Pvz",
+                key: import.meta.env.VITE_RAZORPAY_KEY_ID,
                 amount: calculateTotal() * 100,
                 currency: currency,
                 name: "PIZZACRAFT",
