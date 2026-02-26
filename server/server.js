@@ -62,7 +62,9 @@ app.use('/api/orders', orderRoute);
 app.use('/api/payment', paymentRoute);
 
 app.get('/', (req, res) => {
-  res.send('Pizza Delivery API is running - Version 1.0.2 - Debugging Registration');
+  const dbStatus = mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected';
+  const hasUri = !!process.env.MONGO_URI;
+  res.send(`Pizza Delivery API is running - Version 1.0.3 - DB: ${dbStatus} - URI: ${hasUri}`);
 });
 
 // MongoDB Connection
